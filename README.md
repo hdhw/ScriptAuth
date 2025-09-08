@@ -52,7 +52,7 @@ js-auth/
 
 1. **clone the repo**
    ```bash
-   git clone https://github.com/hdhw/js-auth.git
+   git clone https://github.com/yourusername/js-auth.git
    cd js-auth
    ```
 
@@ -115,3 +115,5 @@ JWT_SECRET=your-super-secret-key
 - all ejs templates are in `views/`
 - styling is in `public/css/`
 - forms submit to `/auth/login` and `/auth/register`
+
+that's it. copy, paste, and you're good to go. <3
