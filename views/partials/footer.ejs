@@ -1,0 +1,79 @@
+    </div> <!-- Close main content container -->
+    
+    <footer class="bg-white dark:bg-gray-800 shadow-inner mt-12">
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+            <div class="border-t border-gray-200 dark:border-gray-700 pt-8">
+                <p class="text-center text-sm text-gray-500 dark:text-gray-400">
+                    &copy; <%= new Date().getFullYear() %> ScriptAuth. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Form submission handling
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const submitButton = form.querySelector('button[type="submit"]');
+                const originalText = submitButton.innerHTML;
+                
+                try {
+                    // Disable submit button and show loading state
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = `
+                        <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        ${submitButton.textContent.trim()}
+                    `;
+
+                    const formData = new FormData(form);
+                    const response = await fetch(form.action, {
+                        method: form.method,
+                        body: form.method.toLowerCase() === 'get' ? null : formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    const data = await response.json();
+                    
+                    if (response.ok) {
+                        if (data.redirect) {
+                            window.location.href = data.redirect;
+                        } else if (data.message) {
+                            // Show success message and redirect after a short delay
+                            const messageDiv = document.createElement('div');
+                            messageDiv.className = 'p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-900/30 dark:text-green-300';
+                            messageDiv.textContent = data.message;
+                            form.prepend(messageDiv);
+                            
+                            if (form.action.includes('login')) {
+                                window.location.href = '/dashboard';
+                            } else if (form.action.includes('register')) {
+                                window.location.href = '/login?registered=true';
+                            }
+                        }
+                    } else {
+                        // Show error message
+                        const errorDiv = document.createElement('div');
+                        errorDiv.className = 'p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-900/30 dark:text-red-300';
+                        errorDiv.textContent = data.error || 'An error occurred. Please try again.';
+                        form.prepend(errorDiv);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An error occurred. Please try again.');
+                } finally {
+                    // Re-enable submit button and restore original text
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalText;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

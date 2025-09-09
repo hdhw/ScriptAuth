@@ -1,0 +1,70 @@
+<%- include('partials/header', { title: 'Home', user }) %>
+    <div class="text-center">
+        <h1 class="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+            Simple Authentication System
+        </h1>
+        <p class="mt-5 max-w-xl mx-auto text-xl text-gray-500">
+            A secure and easy-to-implement authentication system for Node.js applications.
+        </p>
+        
+        <div class="mt-10 flex justify-center space-x-4">
+            <% if (user) { %>
+                <a href="/dashboard" class="px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+                    Go to Dashboard
+                </a>
+            <% } else { %>
+                <a href="/login" class="px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+                    Sign in
+                </a>
+                <a href="/register" class="px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200">
+                    Register
+                </a>
+            <% } %>
+        </div>
+        
+        <div class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <div class="pt-6">
+                <div class="flow-root bg-white rounded-lg px-6 pb-8">
+                    <div class="-mt-6">
+                        <div class="inline-flex items-center justify-center p-3 bg-indigo-500 rounded-md shadow-lg">
+                            <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                        </div>
+                        <h3 class="mt-4 text-lg font-medium text-gray-900">Secure Authentication</h3>
+                        <p class="mt-2 text-base text-gray-500">HMAC password hashing ensures your users' credentials are always secure.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-6">
+                <div class="flow-root bg-white rounded-lg px-6 pb-8">
+                    <div class="-mt-6">
+                        <div class="inline-flex items-center justify-center p-3 bg-indigo-500 rounded-md shadow-lg">
+                            <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                        </div>
+                        <h3 class="mt-4 text-lg font-medium text-gray-900">JWT Sessions</h3>
+                        <p class="mt-2 text-base text-gray-500">Stateless authentication tokens that work seamlessly across your application.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-6">
+                <div class="flow-root bg-white rounded-lg px-6 pb-8">
+                    <div class="-mt-6">
+                        <div class="inline-flex items-center justify-center p-3 bg-indigo-500 rounded-md shadow-lg">
+                            <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h3 class="mt-4 text-lg font-medium text-gray-900">Blazing Fast</h3>
+                        <p class="mt-2 text-base text-gray-500">Lightweight and optimized for performance with minimal overhead.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
