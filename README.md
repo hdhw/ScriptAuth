@@ -10,6 +10,7 @@ a simple and secure authentication system for node.js applications. handle user 
 - **security** - helmet.js, csrf protection, and secure headers
 - **simple api** - easy to integrate with any frontend
 - **lightweight** - minimal dependencies
+- **admin panel** - admin stuff
 
 ## 🚀 getting started
 
