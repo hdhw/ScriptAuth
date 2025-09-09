@@ -1,4 +1,4 @@
-# js-auth
+# ScriptAuth
 
 super simple auth system for node.js apps. handles login/register with passwords without the headache.
 
@@ -13,7 +13,7 @@ super simple auth system for node.js apps. handles login/register with passwords
 ## folder structure
 
 ```
-js-auth/
+ScriptAuth/
 │
 ├─ backend/
 │   ├─ server.js
